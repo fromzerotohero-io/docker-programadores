@@ -1,0 +1,16 @@
+{
+    "name": "theapp/theapp",
+    "type": "project",
+    "description": "The app for learning Docker",
+    "license": "MIT",
+    "require": {
+        "php": "7.2.*",
+        "fideloper/proxy": "^4.0"
+    },
+    "require-dev": {
+        "filp/whoops": "^2.0",
+        "fzaninotto/faker": "^1.4",
+        "mockery/mockery": "^1.0",
+        "nunomaduro/collision": "^3.0"
+    }
+}
