@@ -39,7 +39,7 @@ El output debería ser distinto si ejecutamos el siguiente comando:
 ```docker run --rm test-ls /etc```
 
 ## Ejercicio d)
-Elabora un Dockerfile para crear una imagen alpine los containers de la cual persistan los fichero del directorio `/home` una vez paren y se eliminen.
+Elabora un Dockerfile para crear una imagen alpine los containers de la cual compartan y persistan los fichero del directorio `/home` una vez paren.
 
 Para comprobar que la imagen se ha generado correctamente, ejecuta el siguiente comando:
 
