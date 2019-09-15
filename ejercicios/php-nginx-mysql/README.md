@@ -3,8 +3,8 @@ Vamos a crear un proyecto de Symfony con la última versión disponible (v4), co
 
 ## Empecemos con una imagen para crear el proyecto
 Necesitaremos una imagen de Docker donde esté `PHP 7.2` y `composer` para instalar dependencias. Para crear un proyecto en Symfony, hacen falta las siguientes librerías:
+- composer (curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer)
 - git
-- composer
 - zip
 - unzip
 
