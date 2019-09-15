@@ -13,7 +13,7 @@ Para comprobar que la imagen contiene los archivos, ejecutamos el comando
 ```docker run --rm test-con-archivos ls -la /var/www```
 
 ## Ejercicio b)
-Elabora un Dockerfile para crear una imagen que contenga el fichero `composer.json` y las dependencias de este. Usa la imagen `composer:latest` como imagen base.
+Elabora un Dockerfile para crear una imagen que contenga el fichero `composer.json` y que tenga instaladas las dependencias de éste. Usa la imagen `composer:latest` como imagen base.
 
 Para generar la imagen, ejecutamos el comando
 
