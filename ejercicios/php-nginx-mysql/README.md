@@ -71,3 +71,26 @@ Seguidamente, nos conectamos al container del servicio `app` y ejecutamos el sig
 ```php bin/phpunit```
 
 Se descargará distintas librerías (entre otras `phpunit`), y una vez finalizada la descarga, ejecutará los tests. Si todo ha funcionado correctamente, el output de `phpunit` será que hay un error con un test. Corrige el método `Calculator::multiply` y vuelve a lanzar los tests, esta vez deberías obtener un output positivo.
+
+## Automatizemos y hagámos las tareas de desarrollo más senzillas: Makefile
+Cuando estamos desarrollando nos encontramos con algunas tareas que se repiten, las cuales podemos automatizar. Una manera es con `make`, una herramienta de Linux (con versiones para Mac: instalando `Xcode`; y Windows: `MinGW` o a mediante `chocolatey`) que ejecuta tareas descritas en un archivo (por convención se usa como nombre del fichero `Makefile`).
+
+En un `Makefile` se definen _rules_, que en nuestro caso son tareas a realizar. Cada rule tiene un _target_, que equivale al nombre. Después asignamos todos los comandos a ejecutar, a los cuales se les llama _recipe_.
+
+Encontrarás un fichero `Makefile` en la carpeta de este ejercicio que te servirá de plantilla. El objetivo de este ejercicio es que añadas las siguientes tareas:
+
+- levantar el entorno
+- parar el entorno
+- conectarse a un shell del container de `app`
+- lanzar los tests
+- hacer un update del schema de MySQL
+
+Para ver las tareas de las que dispones, ejecuta
+
+```make```
+
+Para lanzar alguna de estas tareas, solo deberás ejecutar
+
+```make <nombre_tarea>```
+
+Automatización y simplicidad al poder!
