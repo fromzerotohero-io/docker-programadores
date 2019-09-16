@@ -7,6 +7,8 @@ Necesitaremos una imagen de Docker donde esté `PHP 7.2` y `composer` para insta
 - git
 - zip
 - unzip
+- build-essential
+- mysql-client
 
 Con el Dockerfile generamos una imagen para instalar el proyecto. Instanciamos un container con la opción de bind-mount, para que el proyecto de Symfony se guarde en la carpeta donde estamos trabajando. Dentro del container, ejecutamos el comando:
 
@@ -60,3 +62,12 @@ Con el servicio `db` configurado, ejecuta el siguiente comando para generar el s
 En el fichero `UserController.php`, además del método test que hemos usado préviamente, hay dos métodos más. Ambos interactúan con MySQL, ya sea persistiendo o leyendo datos. Solo hace falta que añadas las rutas en el fichero `app-docker/config/routes.yaml`, y pruebes que las peticiones a estas rutas funcionan correctamente.
 
 La ruta para el método que persiste datos debe ser tipo `GET`, y espera 3 query parameters para grabar por usuario: `?nombre=aa&apellido=bb&email=cc`.
+
+## También podemos lanzar tests dentro de Docker
+Como en todo proyecto de Symfony, deberíamos tener una batería de tests. En nuestro proyecto usaremos PHPUnit, y lanzaremos un test unitario para provar que la clase `Calculator` cumple los requerimientos. Para esto, deberás mover el fichero `CalculatorTest.php` a la carpeta `app-docker\tests`, y el fichero `Calculator.php` a la carpeta `app-docker\src`.
+
+Seguidamente, nos conectamos al container del servicio `app` y ejecutamos el siguiente comando:
+
+```php bin/phpunit```
+
+Se descargará distintas librerías (entre otras `phpunit`), y una vez finalizada la descarga, ejecutará los tests. Si todo ha funcionado correctamente, el output de `phpunit` será que hay un error con un test. Corrige el método `Calculator::multiply` y vuelve a lanzar los tests, esta vez deberías obtener un output positivo.
