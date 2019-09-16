@@ -54,7 +54,7 @@ Para comprobar que la conexión con MySQL funciona, se puede ejecutar un comando
 
 Con el servicio `db` configurado, ejecuta el siguiente comando para generar el schema:
 
-```docker-compose run --rm db mysql -uroot -ppassword -D symfony < db_structure.sql```
+```docker-compose exec -T db mysql -uroot -ppassword symfony < db_structure.sql```
 
 ## Peticiones a Symfony con persistencia en MySQL
 En el fichero `UserController.php`, además del método test que hemos usado préviamente, hay dos métodos más. Ambos interactúan con MySQL, ya sea persistiendo o leyendo datos. Solo hace falta que añadas las rutas en el fichero `app-docker/config/routes.yaml`, y pruebes que las peticiones a estas rutas funcionan correctamente.
