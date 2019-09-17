@@ -1,4 +1,4 @@
-# Workshop Docker para Programadores PHP
+# Workshop Docker para Programadores
 
 En este repo encontrarás archivos de configuración y de código para aprender a usar Docker y Docker Compose en tu entorno de desarrollo.
 
