@@ -1,0 +1,28 @@
+{
+  "name": "fromzerotohero-api-docker",
+  "version": "1.0.0",
+  "description": "Proyecto de API con Typescript/NodeJS y MongoDB en un entorno Dockerizado",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "start": "node dist/src/index.js",
+    "tsc-watch": "npx tsc --watch",
+    "tsc": "npx tsc",
+    "test": "NODE_ENV=test && jest --maxWorkers=1 dist",
+    "test-watch": "npm test -- --watchAll"
+  },
+  "author": "Pau Gasol",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.16.1",
+    "@types/mongodb": "^3.1.22",
+    "@types/node": "^11.9.3",
+    "express": "^4.17.1",
+    "mongodb": "^3.1.13",
+    "typescript": "<3.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.3",
+    "@types/jest-diff": "^20.0.0",
+    "jest": "^24.1.0"
+  }
+}
