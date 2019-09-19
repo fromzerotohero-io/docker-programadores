@@ -15,7 +15,7 @@ Con el Dockerfile generamos una imagen para instalar el proyecto. Instanciamos u
 ```composer create-project symfony/website-skeleton app-docker```
 
 ## Provemos que nuestra app recibe peticiones y responde a ellas
-Una vez esté todo el proyecto creado, podemos provar de levantar un servidor de desarrollo de Symfony (aun no será el web server que usaremos más adelante, nginx). Un web server es un software que se encarga de gestionar las peticiones entrantes, ejecutar código PHP (o pasarle un mensaje al intérprete de PHP en el caso de nginx) y devolver una respuesta HTTP con el resultado de la ejecución de PHP.
+Una vez esté todo el proyecto creado, podemos probar de levantar un servidor de desarrollo de Symfony (aun no será el web server que usaremos más adelante, nginx). Un web server es un software que se encarga de gestionar las peticiones entrantes, ejecutar código PHP (o pasarle un mensaje al intérprete de PHP en el caso de nginx) y devolver una respuesta HTTP con el resultado de la ejecución de PHP.
 
 Podemos aprovechar la imagen creada anteriormente, con un container al que le mapearemos el puerto 8080 de nuestro host. Una vez tengamos el container instanciado, instalamos el `Symfony CLI` 
 
@@ -41,7 +41,7 @@ Solo queda iniciar el entorno:
 Y en el browser introducimos la url `localhost:8080`. Si todo ha funcionado correctamente, deberíamos ver la página de `Welcome to Symfony` con un 404.
 
 ## Controller para hacer experimentos
-Por ahora ya tenemos configurados los servicios de Symfony y nginx. Nos falta el servicio de MySQL, y poder hacerle peticiones desde el servicio de Symfony. Añadiremos primero un controller, provaremos que nos funciona y, posteriormente, configuraremos el servicio de MySQL y le haremos peticiones desde Symfony.
+Por ahora ya tenemos configurados los servicios de Symfony y nginx. Nos falta el servicio de MySQL, y poder hacerle peticiones desde el servicio de Symfony. Añadiremos primero un controller, probaremos que nos funciona y, posteriormente, configuraremos el servicio de MySQL y le haremos peticiones desde Symfony.
 
 Encontrarás un fichero con el nombre `UserController.php`. Deberás moverlo a `app-docker/src/Controller`. Seguidamente, en el archivo `app-docker/config/routes.yaml`, añade una ruta para ejecutar el método `UserController::test`. Una vez lo tengas, prueba de hacer una petición a `localhost:8080/<ruta>`.
 
@@ -64,7 +64,7 @@ En el fichero `UserController.php`, además del método test que hemos usado pr�
 La ruta para el método que persiste datos debe ser tipo `GET`, y espera 3 query parameters para grabar por usuario: `?nombre=aa&apellido=bb&email=cc`.
 
 ## También podemos lanzar tests dentro de Docker
-Como en todo proyecto de Symfony, deberíamos tener una batería de tests. En nuestro proyecto usaremos PHPUnit, y lanzaremos un test unitario para provar que la clase `Calculator` cumple los requerimientos. Para esto, deberás mover el fichero `CalculatorTest.php` a la carpeta `app-docker\tests`, y el fichero `Calculator.php` a la carpeta `app-docker\src`.
+Como en todo proyecto de Symfony, deberíamos tener una batería de tests. En nuestro proyecto usaremos PHPUnit, y lanzaremos un test unitario para probar que la clase `Calculator` cumple los requerimientos. Para esto, deberás mover el fichero `CalculatorTest.php` a la carpeta `app-docker\tests`, y el fichero `Calculator.php` a la carpeta `app-docker\src`.
 
 Seguidamente, nos conectamos al container del servicio `app` y ejecutamos el siguiente comando:
 
