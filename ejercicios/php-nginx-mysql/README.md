@@ -94,3 +94,14 @@ Para lanzar alguna de estas tareas, solo deberás ejecutar
 ```make <nombre_tarea>```
 
 Automatización y simplicidad al poder!
+
+## Hasta aquí hemos visto Docker para desarrollo, pero ¿y para producción?
+En producción no podemos instanciar un container, conectarnos a una shell de éste, instalar dependencias, transpilar código, etc. Todo tiene que estar ya dentro del árbol de ficheros del container, de manera que solo sea necesario instanciarlo, o incluso mejor, definir un servicio que use la imagen del container y dejar que lo gestione un orquestrador como `Docker Swarm`, `Kubernetes (k8s)` o `Apache Mesos`.
+
+Prepara un Dockerfile para generar la imagen del servicio `app`, que el directorio de trabajo sea `/var/www`, que tenga instalado `composer`, que contenga las dependencias definidas en el `composer.json` (`/vendor`) y todos los archivos de Symfony (`/app-docker`).
+
+Para probar que funciona correctamente, genera una imagen con este Dockerfile. Una vez la tengas creada, añádela como imagen del servicio `app`, y no uses para el servicio `app` en el fichero `docker-compose.yml` ninguna de las siguientes propiedades:
+- `working_dir`
+- `volumes`
+
+Si has generado la imagen correctamente, deberían seguir funcionando las peticiones a `localhost:8080` y las rutas definidas préviamente.

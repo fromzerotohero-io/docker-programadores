@@ -80,4 +80,4 @@ Para probar que funciona correctamente, genera una imagen con este Dockerfile. U
 - `command`
 - `volumes`
 
-Si has generado la imagen correctamente, deberían seguir funcionando las peticiones a `localhost:8080` y`localhost:8080/contador`.
+Si has generado la imagen correctamente, deberían seguir funcionando las peticiones a `localhost:8080` y `localhost:8080/contador`.
