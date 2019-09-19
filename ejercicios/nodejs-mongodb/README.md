@@ -26,3 +26,13 @@ Typescript es un conjunto de reglas de sintaxi que permite escribir código en J
 - `npm run tsc-watch` se mantiene indefinidamente, y recompila el código cada vez que se modifica algún archivo en `/src`
 
 Así pues, ejecuta el script `npm run tsc` usando un container. El resultado será una carpeta `/dist`, la cual contendrá los ficheros Javascript.
+
+## Ya podemos provar la API
+Levanta el entorno (de momento formado por un solo servicio, `api`). Prueba realizar una petición HTTP a `localhost:<puerto>`, donde `<puerto>` es el que has usado en la configuración del servicio `api`. Deberías obtener una respuesta `Hello World!`.
+
+## Añadámos un servicio de MongoDB
+MongoDB es una base de datos no relacional muy popular, que además suele usarse bastante con NodeJS ya que trabaja de forma nativa con objetos JSON. Crea un servicio `mongodb` con los siguientes requerimientos:
+- la imagen será `mongo`, versión `4.0`
+- con un named-volume que apunte a la carpeta `/db/data` del container (recuerda que al ser named-volume deberás definirlo en el apartado volumes de `docker-compose.yml`)
+
+En el fichero `/src/index.ts` deberás descomentar el código de la línea 2 y líneas 16-24, para usar la conexión a MongoDB y el controlador de Express. Además, deberás volver a transpilar el código (`npm run tsc`). Vuelve a levantar el entorno y realiza una petición a `localhost:<puerto>/contador`.
