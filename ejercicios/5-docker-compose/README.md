@@ -7,7 +7,7 @@ Crea un archivo `docker-compose.yml` que cree un entorno como el creado en el ej
 Para arrancar el entorno, ejecuta `docker-compose up -d`.
 
 ## Ejercicio b)
-Prueba de para todo el entorno generado en el apartado anterior.
+Prueba de parar todo el entorno generado en el apartado anterior.
 
 Ahora prueba de levantar solo el servicio que hace de API.
 
