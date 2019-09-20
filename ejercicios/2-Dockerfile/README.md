@@ -21,7 +21,7 @@ Para generar la imagen, ejecutamos el comando
 
 Para comprobar que la imagen contiene los archivos del ejercicio a) e imprime la lista de ficheros en `/var/wwww`, ejecutamos el comando
 
-```docker run --rm test-run-composer```
+```docker run --rm test-run-composer ls -la```
 
 ## Ejercicio c)
 Elabora un Dockerfile para crear una imagen que imprima en pantalla la lista de ficheros, por defecto del directorio `/var`, o del directorio que pasemos como comando al instanciar el container.
