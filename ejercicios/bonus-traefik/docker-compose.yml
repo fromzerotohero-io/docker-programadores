@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  traefik:
+    image: traefik:v1.7
+    # Activa web UI e indica a Docker que debe escuchar Docker daemon
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      # Para que Traefik pueda escuchar los eventos de Docker (el cual se ejecuta en el host)
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - traefik-public
+    command: --docker --logLevel=INFO --api
+
+networks:
+  traefik-public:
+    name: traefik-public
