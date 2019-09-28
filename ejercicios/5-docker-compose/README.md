@@ -23,4 +23,4 @@ Añade al `docker-compose.yml` un servicio para mysql, con la misma configuraci�
 - accesible desde el puerto 2345 de nuestro host
 - variable de entorno en el container: `MYSQL_ROOT_PASSWORD` (valor que tú quieras)
 
-Una vez tengas el servicio levantado, conectate a mysql desde el propio container (usando docker-compose).
+Una vez tengas el servicio levantado, conéctate a mysql desde el propio container (usando `docker-compose`).
