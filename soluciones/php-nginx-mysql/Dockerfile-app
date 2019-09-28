@@ -1,0 +1,28 @@
+FROM php:7.2-fpm
+
+# Definir directorio de trabajo
+WORKDIR /var/www
+
+# Instalar dependencias
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    default-mysql-client \
+    zip \
+    unzip \
+    git
+
+# Limpiar cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Instalar extensión para la conexión con MySQL
+RUN docker-php-ext-install pdo_mysql
+
+# Instalar composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Añadir usuario para Symfony
+RUN groupadd -g 1000 www
+RUN useradd -u 1000 -ms /bin/bash -g www www
+
+# Usar el usuario www
+USER www
