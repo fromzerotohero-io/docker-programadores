@@ -78,3 +78,24 @@ Para mostrar las tareas disponibles, ejecuta `make` desde el terminal. La manera
 Por defecto, `make` hace un `echo` de cada comando que ejecuta, es decir, imprime por pantalla el comando a ejecutar. Añadiendo `@` al inicio de un comando se evita este comportamiento.
 
 Recuerda que la indentación tiene que ser con tabulación!
+
+## Imagen para entorno de producción
+Para trabajar en entorno de desarrollo nos basta con una imagen que tenga las librerías necesarias (por ejemplo, `composer` y el módulo de `pdo_mysql`). Pero no es necesario tener instaladas las dependencias de PHP ni todo el árbol de ficheros del proyecto, ya que usamos bind-mount para que los cambios en el host se actualizen en el container.
+
+La estrategia para un entorno de producción deberá ser distinta: deberíamos usar volúmenes solo para pesistir información (por ejemplo, para generar logs o para guardar datos en una base de datos). En este caso, deberíamos tener copiado, dentro de la imagen, todo el árbol de ficheros de nuestro proyecto, incluyendo dependencias (carpeta `/vendor` en nuestro caso). Así pues, hará falta añadir las siguientes lineas a nuestro Dockerfile (justo antes de la instrucción `USER www`):
+```
+# Copiar composer e instalar dependencias; seguramente cambiará pocas veces, de manera que reaprovecharemos cache
+COPY ./app-docker/composer.lock ./app-docker/composer.json /var/www/
+RUN composer install
+
+# Copiar ficheros de la app, con permisos para usuario www; cada vez que generemos una nueva imagen para producción, las probabilidades que haya cambios son elevadas, de manera que nos invalidará la cache. Por este motivo, estas instrucciones están situadas al final
+COPY ./app-docker/* /var/www/
+COPY --chown=www:www . /var/www
+
+# Usar el usuario www
+USER www
+```
+
+Añade también el fichero `.dockerignore` antes de generar la imagen. Las rutas indicadas no se pasarán en contexto cuando ejecutamos `docker build`. En nuestro caso, no pasamos la carpeta `/vendor`, ya que usamos la instrucción `RUN composer install` para generar las dependencias en el momento de crear la imagen de producción.
+
+Para comprobar que la imagen de producción es correcta, comenta la sección de `volume` y `working_dir` del servicio `app` en `docker-compose.yml`. Ejecuta `docker-compose build` para recrear la imagen, y vuelve a levantar el entorno. Todo debería seguir funcionando. Si estás usando Mac, es posible que veas una mejora de rendimiento, debido a que el bind-mount que usamos en desarrollo tiene penalización en estos equipos.
