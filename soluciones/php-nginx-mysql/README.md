@@ -71,3 +71,10 @@ docker-compose exec app php bin/phpunit
 ```
 
 ## Automatización con Makefile
+Encontrarás un archivo `Makefile` con las tareas propuestas en el ejercicio. Cópialo en la carpeta del ejercicio, y desde el terminal, ejecuta `make <tarea>`.
+
+Para mostrar las tareas disponibles, ejecuta `make` desde el terminal. La manera usada para mostrar esta información es la primera tarea `help`. Por defecto, la primera tarea del `Makefile` se ejecuta por defecto si no se especifica ninguna tarea. En nuestro caso, el comando `sed` (_stream editor_) nos sirve para leer todo el contenido del propio fichero y filtrar por aquellas lineas que empiezen con `##`.
+
+Por defecto, `make` hace un `echo` de cada comando que ejecuta, es decir, imprime por pantalla el comando a ejecutar. Añadiendo `@` al inicio de un comando se evita este comportamiento.
+
+Recuerda que la indentación tiene que ser con tabulación!

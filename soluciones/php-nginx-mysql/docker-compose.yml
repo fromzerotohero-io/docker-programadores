@@ -1,0 +1,28 @@
+version: "3.5"
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./app-docker:/var/www
+    working_dir: /var/www
+  
+  webserver:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+  
+  db:
+    image: mysql
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=symfony
+
+volumes:
+  db-data:
